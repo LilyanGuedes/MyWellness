@@ -9,7 +9,7 @@ function SaibaMais() {
 }
 
 
-export default function App() {
+export function Water() {
 
   const [valor, setValor] = useState('');
   const [resultado, setResultado] = useState(0);
@@ -35,7 +35,7 @@ export default function App() {
     <View style={styles.container}>
 
       <View style={styles.head}>
-        <Image source={require('./assets/Logo2.png')}
+        <Image source={require('../../assets/LogoMyWellness.png')}
           style={{ width: 210, height: 320 }}
           resizeMode="contain" />
       </View>
@@ -43,9 +43,9 @@ export default function App() {
 
       <StatusBar style="auto" />
 
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
+      <View style={{ height: 368, width: 383, borderRadius: 12, marginTop: 20, alignItems: 'center', justifyContent: 'flex-start', backgroundColor: '#252733' }}>
         <Text style={{ fontSize: 18, marginTop: 20, color: '#FFFFFF' }}>Você sabe quanto de água deve ingerir?</Text>
-        <Image source={require('./assets/agua-diaria.png')}
+        <Image source={require('../../assets/agua-diaria.png')}
           style={{ width: 98, height: 208 }}
           resizeMode="contain" />
 
@@ -64,7 +64,7 @@ export default function App() {
             Ingerir aproximadamente: {resultado} litros
             
             <View style={styles.conteudoAtençao}>
-              <Image source={require('./assets/ponto-de-exclamacao.png')}
+              <Image source={require('../../assets/ponto-de-exclamacao.png')}
                 style={{ width: 30, height: 30 }}
                 resizeMode="contain" />
               <Text>Praticantes de atividade física precisam tomar mais de cerca de 500 ml a 1 L de água por cada hora de atividade. As diferenças de temperatura também influenciam a recomendação.</Text>
@@ -85,7 +85,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#5B9053',
+    backgroundColor: '#151724',
     alignItems: 'center',
     justifyContent: 'flex-start'
 

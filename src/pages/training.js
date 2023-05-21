@@ -43,7 +43,7 @@ function abrirURLPeito() {
 }
 
 
-export default function App() {
+export function Training() {
 
   const DataCardio = [
     { id: 1, title: '- Melhora a resistência' },
@@ -63,7 +63,7 @@ export default function App() {
     <View style={styles.container}>
 
       <View style={styles.head}>
-        <Image source={require('./assets/Logo2.png')}
+        <Image source={require('../../assets/LogoMyWellness.png')}
           style={{ width: 210, height: 320 }}
           resizeMode="contain" />
       </View>
@@ -153,7 +153,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#5B9053',
+    backgroundColor: '#151724',
     alignItems: 'center'
 
   }, conteudo: {
