@@ -12,9 +12,10 @@ export default function Cabecalho(props) {
 const styles = StyleSheet.create({
   cabecalho: {
     height: 50,
-    width: 340,
-    borderRadius: 20,
-    backgroundColor: 'coral',
+    width: 362,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    backgroundColor: '#4e4e4e',
     justifyContent: 'center',
     alignItems: 'center',
 

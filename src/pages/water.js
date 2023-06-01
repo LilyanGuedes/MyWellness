@@ -43,7 +43,7 @@ export function Water() {
 
       <StatusBar style="auto" />
 
-      <View style={{ height: 368, width: 383, borderRadius: 12, marginTop: 20, alignItems: 'center', justifyContent: 'flex-start', backgroundColor: '#252733' }}>
+      <View style={{ height: 368, width: 383, borderRadius: 12, marginTop: 20, alignItems: 'center', justifyContent: 'flex-start', backgroundColor: '#252733'  }}>
         <Text style={{ fontSize: 18, marginTop: 20, color: '#FFFFFF' }}>Você sabe quanto de água deve ingerir?</Text>
         <Image source={require('../../assets/agua-diaria.png')}
           style={{ width: 98, height: 208 }}

@@ -2,15 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import { ScrollView, StyleSheet, Text, View, Image, FlatList, TouchableOpacity, Linking } from 'react-native';
 import Cabecalho from '../componentes/Cabecalho';
 import { useState } from 'react';
-import NovosItens from '../componentes/NovosItens';
+import ItensListados from '../componentes/ItensListados';
+import AdicionarItem from '../componentes/AdicionarItem';
+import database from "../config/firebaseconfig";
+import {FontAwesome} from "@expo/vector-icons"
 
 export function Training() {
 
-  const [lista, setLista] = useState ([
-    {texto: "agachamento", key: '1'},
-    {texto: "extensora", key: '2'},
-    {texto: "hack", key: '3'}
-  ])
+  const [lista, setLista] = useState ('')
 
   const apertarItem = (key) => {
     setLista(
@@ -19,6 +18,28 @@ export function Training() {
       }
     )
   }
+
+  const SubmeterInformacao = (texto) => {
+    setLista((prevLista) => {
+      return [
+        { texto: texto, key: Math.random().toString()},
+        ...prevLista
+      ]
+    })
+  }
+
+  
+    const [treinoA, setTreinoA] = useState([])
+    
+    useEfect(()=> {
+      database.collection("TrainingA").onSnapshot((query)=>{
+        const list = []
+        query.forEach((doc)=>{
+          list.push({...doc.data(), id: doc.id})
+        })
+        setTreinoA(list)
+      })
+    }, [])
 
   return (
 
@@ -35,19 +56,35 @@ export function Training() {
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
 
         <View style={styles.conteudo}>
+
           <Cabecalho name="Treino A"/>
+          <AdicionarItem funcao={SubmeterInformacao}/>
+
           <View>
             <FlatList
               data={lista}
               renderItem={({item}) => (
-                <NovosItens props={item} funcao={apertarItem}/>
+                <ItensListados props={item} funcao={apertarItem}/>
               )}/>
           </View>
+
         </View>
 
 
         <View style={styles.conteudo}>
+
           <Cabecalho name="Treino B"/>
+          <AdicionarItem funcao={SubmeterInformacao}/>
+
+          <View>
+            <FlatList
+              data={lista}
+              renderItem={({item}) => (
+                <ItensListados props={item} funcao={apertarItem}/>
+              )}
+            />
+          </View>
+
         </View>
 
         <View style={styles.conteudo}>
@@ -74,13 +111,14 @@ const styles = StyleSheet.create({
 
   }, conteudo: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 45,
+    borderRadius: 20,
     width: 362,
     height: 500,
     marginTop: 45,
     flexDirection: 'column',
     alignItems: 'center',
-    padding: 15,
+    paddingRight: 15,
+    paddingLeft: 15,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
@@ -107,23 +145,10 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 5
 
-  }, mais: {
-    color: '#66B25A',
-    fontWeight: 'bold',
-    width: 82,
-    height: 20,
-    justifyContent: 'center',
-    alignItems: 'center'
   }, titulo: {
-    fontWeight: 'bold',
-    marginBottom: 12
+    fontWeight: 'bold'
   },treinos: {
     flexDirection: 'row'
-  }, videos: {
-    color: '#5B9053',
-    fontWeight: 'bold',
-    padding: 12,
-    fontSize: 16
   }
 
 });
