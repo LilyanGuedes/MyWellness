@@ -13,9 +13,10 @@ import Cabecalho from "../componentes/Cabecalho";
 import { useEffect, useState } from "react";
 import ItensListados from "../componentes/ItensListados";
 import AdicionarItem from "../componentes/AdicionarItem";
+import {MaterialIcons} from '@expo/vector-icons'
 import { api } from "../lib/api";
 
-export function Training() {
+export function Training({ navigation }) {
   const [lista, setLista] = useState("");
 
   async function deletarExercicio  (key) {
@@ -61,7 +62,14 @@ export function Training() {
               data={lista}
               showsVerticalScrollIndicator={false}
               renderItem={({ item }) => (
-                <ItensListados props={item} funcao={deletarExercicio} />
+                <View style={styles.lista}>
+                   <TouchableOpacity onPress={()=> navigation.navigate("details", {
+                        id: item.id
+                   })} style={styles.details}>
+                       <MaterialIcons name="content-paste" size={28} color={'gray'}/>
+                   </TouchableOpacity>
+                   <ItensListados props={item} funcao={deletarExercicio} />
+                </View>
               )}
             />
           </View>
@@ -123,4 +131,17 @@ const styles = StyleSheet.create({
   treinos: {
     flexDirection: "row",
   },
+  lista: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: 205,
+    marginTop: 19,
+      flexDirection: 'row',
+      marginBottom: 10,
+    paddingHorizontal: 8,
+    paddingVertical: 6,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd'
+  }
 });

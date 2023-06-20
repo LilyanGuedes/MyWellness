@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, TextInput, Linking } from 'react-native';
 import React, { useState } from 'react';
+import {FontAwesome} from "@expo/vector-icons"
 
-export function Home() {
+export function Home({navigation}) {
   return (
     <View style={styles.container}>
 
@@ -14,26 +15,29 @@ export function Home() {
 
       <StatusBar style="auto" />
 
-      <View style={styles.botão}>
-       <Image source={require('../../assets/lampada-de-ideia.png')} 
-          style={{width: 120, height: 80}}
-          resizeMode="contain"/>
-          <Text style={styles.botaoText}>DICAS DE TREINO</Text>
-      </View>
-
-      <View style={styles.botão}>
+      <TouchableOpacity style={styles.botão}
+           onPress={()=> navigation.navigate("training")}>
        <Image source={require('../../assets/treino.png')} 
           style={{width: 120, height: 80}}
           resizeMode="contain"/>
           <Text style={styles.botaoText}>ORGANIZE SEUS EXERCÍCIOS</Text>
-      </View>
+      </TouchableOpacity>
 
-      <View style={styles.botão}>
+      <TouchableOpacity style={styles.botão}
+           onPress={()=> navigation.navigate("water")}>
        <Image source={require('../../assets/garrafa-de-agua.png')} 
           style={{width: 120, height: 80}}
           resizeMode="contain"/>
           <Text style={styles.botaoText}>QUANTO DE ÁGUA INGERIR</Text>
-      </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.botão} 
+          onPress={()=> navigation.navigate("user")}>
+       <Image source={require('../../assets/corpo.png')} 
+          style={{width: 120, height: 80}}
+          resizeMode="contain"/>
+          <Text style={styles.botaoText}>ARMAZENE SUAS MEDIDAS</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -42,8 +46,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#151724',
-    alignItems: 'center',
-    justifyContent: 'flex-start'
+    alignItems: 'center'
 
   }, logo: {
     color: '#FFFFFF',
@@ -69,7 +72,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     width: 362,
     height: 125,
-    marginTop:45,
+    marginTop:74,
     flexDirection: 'row',
     alignItems: 'center',
     shadowColor: "#000",

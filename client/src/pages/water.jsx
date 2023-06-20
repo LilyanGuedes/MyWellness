@@ -60,7 +60,7 @@ export function Water() {
           <Text>Calcular</Text>
         </TouchableOpacity>
         {resultado > 0 &&
-          <Text style={{ fontSize: 16, marginTop: 20, color: '#FFFFFF', height: 300 }}>
+          <Text style={{ fontSize: 16, marginTop: 20,height: 300, color: '#ffff' }}>
             Ingerir aproximadamente: {resultado} litros
             
             <View style={styles.conteudoAtençao}>
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     height: 38,
     opacity: 0.6
   }, conteudoAtençao: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor : '#dcdcdc',
     borderRadius: 45,
     width: 362,
     height: 140,

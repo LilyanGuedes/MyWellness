@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const mysql = require("mysql2");
-const cors = require("cors")
+const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
@@ -44,6 +44,16 @@ app.post("/exercicio", (req, res) => {
     else res.send(result)
   } )
 })
+
+app.post("/descricao", (req, res) => {
+  const {details} = req.body;
+  let SQL = "INSERT INTO treinoInferiores (detalhes) VALUES (?)";
+  db.query(SQL, details, (err, result) => {
+    if(err) console.log(err);
+    else res.send(result)
+  })
+})
+
 
 app.listen(3001, () => {
   console.log("rodando servidor")
