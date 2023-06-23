@@ -28,7 +28,7 @@ export function Home({navigation}) {
        <Image source={require('../../assets/garrafa-de-agua.png')} 
           style={{width: 120, height: 80}}
           resizeMode="contain"/>
-          <Text style={styles.botaoText}>QUANTO DE ÁGUA INGERIR</Text>
+          <Text style={styles.botaoText}>QUANTO DE ÁGUA INGERIR!</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.botão} 
