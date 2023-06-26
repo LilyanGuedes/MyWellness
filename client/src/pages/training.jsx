@@ -43,9 +43,13 @@ export function Training({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.head}>
+        <TouchableOpacity style={styles.botão}
+            onPress={()=> navigation.navigate("home")}>
+            <MaterialIcons name="keyboard-arrow-left" size={28} color={'gray'}/>
+        </TouchableOpacity>
         <Image
           source={require("../../assets/LogoMyWellness.png")}
-          style={{ width: 210, height: 320 }}
+          style={{ width: 210, height: 320,  marginLeft: 60  }}
           resizeMode="contain"
         />
       </View>
@@ -110,7 +114,6 @@ const styles = StyleSheet.create({
   head: {
     marginTop: 42,
     flexDirection: "row",
-    justifyContent: "center",
     alignItems: "center",
     width: 375,
     height: 55,

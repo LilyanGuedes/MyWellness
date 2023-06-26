@@ -25,18 +25,22 @@ export default function App() {
           <Stack.Screen
             name="training"
             component={Training}
+            options={{headerShown : false}}
             />
           <Stack.Screen
             name="details"
             component={Details}
+            options={{headerShown : false}}
             />
           <Stack.Screen
             name="user"
             component={User}
+            options={{headerShown : false}}
            />
           <Stack.Screen
             name="water"
             component={Water}
+            options={{headerShown : false}}
            />
         </Stack.Navigator>
       </NavigationContainer>

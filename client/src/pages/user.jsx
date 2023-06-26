@@ -9,8 +9,10 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
+import {MaterialIcons} from '@expo/vector-icons';
+import { StatusBar } from "expo-status-bar";
 
-export function User() {
+export function User({ navigation }) {
   const [data, setData] = useState([
     { id: 1, item: "1-Pescoço (cm):", quantity: "" },
     { id: 2, item: "2-Ombros (cm):", quantity: "" },
@@ -53,7 +55,19 @@ export function User() {
   );
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <StatusBar style="auto" />
+      <View style={styles.head}>
+        <TouchableOpacity style={styles.botão}
+            onPress={()=> navigation.navigate("home")}>
+            <MaterialIcons name="keyboard-arrow-left" size={28} color={'gray'}/>
+        </TouchableOpacity>
+        <Image
+          source={require("../../assets/LogoMyWellness.png")}
+          style={{ width: 210, height: 320,  marginLeft: 60  }}
+          resizeMode="contain"
+        />
+      </View>
+      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
         <Image
           source={require("../../assets/Molde.png")}
           style={styles.image}
@@ -101,9 +115,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
     marginTop: 35,
+    backgroundColor: "#151724",
   },
   scrollContainer: {
     alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 20,
   },
   image: {
     width: 350,
@@ -166,4 +183,10 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 18,
   },
+  head: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: 375,
+    height: 55,
+  }
 });

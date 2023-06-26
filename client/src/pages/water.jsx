@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, TextInput, Linking } from 'react-native';
 import React, { useState } from 'react';
+import {MaterialIcons} from '@expo/vector-icons'
 
 const urlSaibaMais = 'https://www.clinicaunavita.com.br/noticias/quantos-litros-de-agua-voce-precisa-beber-diariamente'
 
@@ -9,7 +10,7 @@ function SaibaMais() {
 }
 
 
-export function Water() {
+export function Water({ navigation }) {
 
   const [valor, setValor] = useState('');
   const [resultado, setResultado] = useState(0);
@@ -35,8 +36,12 @@ export function Water() {
     <View style={styles.container}>
 
       <View style={styles.head}>
+       <TouchableOpacity style={styles.botão}
+            onPress={()=> navigation.navigate("home")}>
+            <MaterialIcons name="keyboard-arrow-left" size={28} color={'gray'}/>
+        </TouchableOpacity>
         <Image source={require('../../assets/LogoMyWellness.png')}
-          style={{ width: 210, height: 320 }}
+          style={{ width: 210, height: 320, marginLeft: 60 }}
           resizeMode="contain" />
       </View>
       <View style={styles.linha}></View>
@@ -95,7 +100,6 @@ const styles = StyleSheet.create({
   }, head: {
     marginTop: 42,
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
     width: 375,
     height: 55
@@ -142,5 +146,4 @@ const styles = StyleSheet.create({
     elevation: 5
 
   }
-
 });
