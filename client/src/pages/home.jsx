@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, TextInput, Linking } from 'react-native';
 import React, { useState } from 'react';
-import {FontAwesome} from "@expo/vector-icons"
+import { FontAwesome } from "@expo/vector-icons"
 
-export function Home({navigation}) {
+export function Home({ navigation }) {
   return (
     <View style={styles.container}>
 
@@ -16,27 +16,27 @@ export function Home({navigation}) {
       <StatusBar style="auto" />
 
       <TouchableOpacity style={styles.botão}
-           onPress={()=> navigation.navigate("training")}>
-       <Image source={require('../../assets/treino.png')} 
-          style={{width: 120, height: 80}}
-          resizeMode="contain"/>
-          <Text style={styles.botaoText}>ORGANIZE SEUS EXERCÍCIOS</Text>
+        onPress={() => navigation.navigate("training")}>
+        <Image source={require('../../assets/treino.png')}
+          style={{ width: 120, height: 80 }}
+          resizeMode="contain" />
+        <Text style={styles.botaoText}>ORGANIZE SEUS EXERCÍCIOS</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.botão}
-           onPress={()=> navigation.navigate("water")}>
-       <Image source={require('../../assets/garrafa-de-agua.png')} 
-          style={{width: 120, height: 80}}
-          resizeMode="contain"/>
-          <Text style={styles.botaoText}>QUANTO DE ÁGUA INGERIR</Text>
+        onPress={() => navigation.navigate("water")}>
+        <Image source={require('../../assets/garrafa-de-agua.png')}
+          style={{ width: 120, height: 80 }}
+          resizeMode="contain" />
+        <Text style={styles.botaoText}>QUANTO DE ÁGUA INGERIR</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.botão} 
-          onPress={()=> navigation.navigate("user")}>
-       <Image source={require('../../assets/corpo.png')} 
-          style={{width: 120, height: 80}}
-          resizeMode="contain"/>
-          <Text style={styles.botaoText}>ARMAZENE SUAS MEDIDAS</Text>
+      <TouchableOpacity style={styles.botão}
+        onPress={() => navigation.navigate("user")}>
+        <Image source={require('../../assets/corpo.png')}
+          style={{ width: 120, height: 80 }}
+          resizeMode="contain" />
+        <Text style={styles.botaoText}>ARMAZENE SUAS MEDIDAS</Text>
       </TouchableOpacity>
     </View>
   )
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     width: 362,
     height: 125,
-    marginTop:74,
+    marginTop: 74,
     flexDirection: 'row',
     alignItems: 'center',
     shadowColor: "#000",
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 5
-  }, botaoText:{
+  }, botaoText: {
     fontSize: 15,
     fontWeight: 'bold',
     color: '#FFFFFF'

@@ -9,47 +9,55 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
+import AdicionarItem from "../componentes/AdicionarItem";
 import Cabecalho from "../componentes/Cabecalho";
 import { useEffect, useState } from "react";
 import ItensListados from "../componentes/ItensListados";
-import AdicionarItem from "../componentes/AdicionarItem";
-import {MaterialIcons} from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
 import { api } from "../lib/api";
 
 export function Training({ navigation }) {
   const [lista, setLista] = useState("");
 
-  async function deletarExercicio  (key) {
+  async function deletarExercicio(key) {
     await api.delete(`/exercicio/${key}`);
 
-    const novaLista = lista.filter((item)=> item.id != key)
+    const novaLista = lista.filter((item) => item.id != key)
     setLista(novaLista)
   };
 
   useEffect(() => {
-   pegarDados()
+    console.log('a');
+    pegarDados()
   }, []);
 
-  async function submeterInformacao (texto){
-    await api.post("/exercicio", { exercicio: texto });
+  const submeterInformacao = async (texto) => {
+    console.log(texto);
+    api.post("/exercicio", nomeExercicio );
     pegarDados()
   };
 
-  async function pegarDados () {
-    const {data} = await api.get("/exercicio")
-    setLista(data)
+  async function pegarDados() {
+    try {
+      console.log('1');
+      const response = await api.get("exercicio")
+      console.log(response.data);
+      setLista(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.head}>
         <TouchableOpacity style={styles.botão}
-            onPress={()=> navigation.navigate("home")}>
-            <MaterialIcons name="keyboard-arrow-left" size={28} color={'gray'}/>
+          onPress={() => navigation.navigate("home")}>
+          <MaterialIcons name="keyboard-arrow-left" size={28} color={'gray'} />
         </TouchableOpacity>
         <Image
           source={require("../../assets/LogoMyWellness.png")}
-          style={{ width: 210, height: 320,  marginLeft: 60  }}
+          style={{ width: 210, height: 320, marginLeft: 60 }}
           resizeMode="contain"
         />
       </View>
@@ -58,7 +66,7 @@ export function Training({ navigation }) {
 
       <View style={styles.scroll}>
         <View style={styles.conteudo}>
-          <Cabecalho name="Treino de Inferiores" />
+          <Cabecalho name="Exercicios" />
           <AdicionarItem funcao={submeterInformacao} />
           <View>
             <FlatList
@@ -66,12 +74,12 @@ export function Training({ navigation }) {
               showsVerticalScrollIndicator={false}
               renderItem={({ item }) => (
                 <View style={styles.lista}>
-                   <TouchableOpacity onPress={()=> navigation.navigate("details", {
-                        id: item.id
-                   })} style={styles.details}>
-                       <MaterialIcons name="content-paste" size={28} color={'gray'}/>
-                   </TouchableOpacity>
-                   <ItensListados props={item} funcao={deletarExercicio} />
+                  <TouchableOpacity onPress={() => navigation.navigate("details", {
+                    id: item.id
+                  })} style={styles.details}>
+                    <MaterialIcons name="content-paste" size={28} color={'gray'} />
+                  </TouchableOpacity>
+                  <ItensListados props={item} funcao={deletarExercicio} />
                 </View>
               )}
             />
@@ -139,8 +147,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: 205,
     marginTop: 19,
-      flexDirection: 'row',
-      marginBottom: 10,
+    flexDirection: 'row',
+    marginBottom: 10,
     paddingHorizontal: 8,
     paddingVertical: 6,
     borderBottomWidth: 1,

@@ -9,7 +9,6 @@ export default function AdicionarDetalhes({texto, setTexto, funcao }) {
     }
     return (
       <View>
-
         <TextInput
           style={styles.input}
           placeholder="Detalhes"
@@ -21,7 +20,6 @@ export default function AdicionarDetalhes({texto, setTexto, funcao }) {
           title="+"
           color= '#C2B1B1'
         />
-
       </View>
     )
 }

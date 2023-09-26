@@ -1,4 +1,3 @@
-import app from "../app";
 import { FastifyInstance } from 'fastify';
 
 // Controllers
@@ -20,7 +19,7 @@ app.delete("/exercicio/:id", async (request, reply) => {
   }
 });
 
-app.get("/exercicio", async (request, reply) => {  
+app.get("/exercicio", async (request, reply) => {    
   try {
     const exercicios = await BuscarExercicios(); 
     reply.send(exercicios);
@@ -31,9 +30,10 @@ app.get("/exercicio", async (request, reply) => {
 });
 
 app.post("/exercicio", async (request, reply) => {
-  const { nomeExercicio, detalhesExercicio, IDUsuario } = request.body as { nomeExercicio: string, detalhesExercicio: string, IDUsuario: number };
+  const { nomeExercicio } = request.body as { nomeExercicio: string };
+  const detalhesExercicio: string =  '';
   try {
-    const newExercicio = await NovoExercicio(nomeExercicio, detalhesExercicio, IDUsuario)
+    const newExercicio = await NovoExercicio(nomeExercicio, detalhesExercicio)
     reply.send(newExercicio);
   } catch (err) {
     console.error(err);

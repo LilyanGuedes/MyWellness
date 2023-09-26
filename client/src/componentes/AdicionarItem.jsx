@@ -1,35 +1,34 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import { Button, StyleSheet, Text, TextInput, View } from "react-native"
 
 export default function AdicionarItem({ funcao }) {
-    const [texto, setTexto] = useState('')
+  const [texto, setTexto] = useState('')
 
-    const pegarMudanca = (val) => {
-      val.preventDefault()
-      setTexto(val)
-      console.log('i');
-    }
-    function enviar() {
-      funcao(texto)
-      setTexto (" ")
-    }
-    return (
-      <View>
+  const pegarMudanca = (e) => {
+    setTexto(e)
+  }
 
-        <TextInput
-          style={styles.input}
-          placeholder="Novo exercício"
-          onChangeText={pegarMudanca}
-          value={texto}
-        />
-        <Button
-          onPress={enviar}
-          title="+"
-          color= '#C2B1B1'
-        />
+  function enviar() {
+    funcao(texto)
+    setTexto(" ")
+  }
+  return (
+    <View>
+      <TextInput
+        style={styles.input}
+        placeholder="Novo exercício"
 
-      </View>
-    )
+        onChangeText={pegarMudanca}
+        value={texto}
+      />
+      <Button
+        onPress={enviar}
+        title="+"
+        color='#C2B1B1'
+      />
+
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({

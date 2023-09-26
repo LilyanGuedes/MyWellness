@@ -12,9 +12,9 @@ import { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import Detalhes from "../componentes/Detalhes";
 import AdicionarDetalhes from "../componentes/AdicionarDetalhes";
-import { api } from "../lib/api";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
+import { api } from "../lib/api";
 
 export function Details({ navigation }) {
   const { id } = useRoute().params;

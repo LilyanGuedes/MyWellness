@@ -1,14 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, TextInput, Linking } from 'react-native';
 import React, { useState } from 'react';
-import {MaterialIcons} from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
 
 const urlSaibaMais = 'https://www.clinicaunavita.com.br/noticias/quantos-litros-de-agua-voce-precisa-beber-diariamente'
 
 function SaibaMais() {
   Linking.openURL(urlSaibaMais);
 }
-
 
 export function Water({ navigation }) {
 
@@ -36,9 +35,9 @@ export function Water({ navigation }) {
     <View style={styles.container}>
 
       <View style={styles.head}>
-       <TouchableOpacity style={styles.botão}
-            onPress={()=> navigation.navigate("home")}>
-            <MaterialIcons name="keyboard-arrow-left" size={28} color={'gray'}/>
+        <TouchableOpacity style={styles.botão}
+          onPress={() => navigation.navigate("home")}>
+          <MaterialIcons name="keyboard-arrow-left" size={28} color={'gray'} />
         </TouchableOpacity>
         <Image source={require('../../assets/LogoMyWellness.png')}
           style={{ width: 210, height: 320, marginLeft: 60 }}
@@ -48,8 +47,8 @@ export function Water({ navigation }) {
 
       <StatusBar style="auto" />
 
-      <View style={{ height: 368, width: 383, borderRadius: 12, marginTop: 20, alignItems: 'center', justifyContent: 'flex-start', backgroundColor: '#252733'  }}>
-        <Text style={{ fontSize: 18, marginTop: 20, color: '#FFFFFF' }}>Você sabe quanto de água deve ingerir?</Text>
+      <View style={{ height: 368, width: 383, borderRadius: 12, marginTop: 20, alignItems: 'center', justifyContent: 'flex-start', backgroundColor: '#252733' }}>
+        <Text style={styles.textoPadrao}>Você sabe quanto de água deve ingerir?</Text>
         <Image source={require('../../assets/agua-diaria.png')}
           style={{ width: 98, height: 208 }}
           resizeMode="contain" />
@@ -65,14 +64,13 @@ export function Water({ navigation }) {
           <Text>Calcular</Text>
         </TouchableOpacity>
         {resultado > 0 &&
-          <Text style={{ fontSize: 16, marginTop: 20,height: 300, color: '#ffff' }}>
-            Ingerir aproximadamente: {resultado} litros
-            
+          <Text style={styles.textoPadrao}>
+              Ingerir aproximadamente: {resultado} litros
             <View style={styles.conteudoAtençao}>
               <Image source={require('../../assets/ponto-de-exclamacao.png')}
                 style={{ width: 30, height: 30 }}
                 resizeMode="contain" />
-              <Text>Praticantes de atividade física precisam tomar mais de cerca de 500 ml a 1 L de água por cada hora de atividade. As diferenças de temperatura também influenciam a recomendação.</Text>
+              <Text style={styles.textoPadraoBLK}>Praticantes de atividade física precisam tomar mais de cerca de 500 ml a 1 L de água por cada hora de atividade. As diferenças de temperatura também influenciam a recomendação.</Text>
               <TouchableOpacity>
                 <Text style={styles.mais} onPress={SaibaMais}>Saiba mais</Text>
               </TouchableOpacity>
@@ -131,7 +129,7 @@ const styles = StyleSheet.create({
     height: 38,
     opacity: 0.6
   }, conteudoAtençao: {
-    backgroundColor : '#dcdcdc',
+    backgroundColor: '#dcdcdc',
     borderRadius: 45,
     width: 362,
     height: 140,
@@ -144,6 +142,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 5
-
+  },
+  textoPadrao: {
+    fontSize: 18,
+    marginTop: 20,
+    color: '#ffffff',
+    textAlign: 'center',
+  },
+  textoPadraoBLK: {
+    color: '#000',
+    textAlign: 'center',
   }
 });
