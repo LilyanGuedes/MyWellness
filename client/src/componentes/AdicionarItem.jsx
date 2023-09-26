@@ -5,7 +5,9 @@ export default function AdicionarItem({ funcao }) {
     const [texto, setTexto] = useState('')
 
     const pegarMudanca = (val) => {
+      val.preventDefault()
       setTexto(val)
+      console.log('i');
     }
     function enviar() {
       funcao(texto)

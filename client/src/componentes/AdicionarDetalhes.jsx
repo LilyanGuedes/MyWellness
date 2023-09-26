@@ -1,14 +1,10 @@
 import React, {useState} from "react"
 import { Button, StyleSheet, Text, TextInput, View } from "react-native"
 
-export default function AdicionarDetalhes({ funcao }) {
-    const [texto, setTexto] = useState('')
+export default function AdicionarDetalhes({texto, setTexto, funcao }) {
 
-    const pegarMudanca = (val) => {
-      setTexto(val)
-    }
     function enviar() {
-      funcao(texto)
+      funcao()
       setTexto (" ")
     }
     return (
@@ -16,8 +12,8 @@ export default function AdicionarDetalhes({ funcao }) {
 
         <TextInput
           style={styles.input}
-          placeholder="Novo exercício"
-          onChangeText={pegarMudanca}
+          placeholder="Detalhes"
+          onChangeText={setTexto}
           value={texto}
         />
         <Button

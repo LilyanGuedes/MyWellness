@@ -45,10 +45,11 @@ app.post("/exercicio", (req, res) => {
   } )
 })
 
-app.post("/descricao", (req, res) => {
+app.patch("/descricao/:id", (req, res) => {
   const {details} = req.body;
-  let SQL = "INSERT INTO treinoInferiores (detalhes) VALUES (?)";
-  db.query(SQL, details, (err, result) => {
+  const {id} = req.params;
+  let SQL = "UPDATE treinoInferiores SET detalhes = ? WHERE id=?";
+  db.query(SQL, [details, id], (err, result) => {
     if(err) console.log(err);
     else res.send(result)
   })

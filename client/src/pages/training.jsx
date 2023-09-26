@@ -54,13 +54,12 @@ export function Training({ navigation }) {
         />
       </View>
 
-      <View style={styles.linha}></View>
+      <View style={styles.linha} ></View>
 
       <View style={styles.scroll}>
         <View style={styles.conteudo}>
           <Cabecalho name="Treino de Inferiores" />
           <AdicionarItem funcao={submeterInformacao} />
-
           <View>
             <FlatList
               data={lista}
