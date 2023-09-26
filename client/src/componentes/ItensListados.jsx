@@ -5,8 +5,8 @@ import { MaterialIcons } from '@expo/vector-icons'
 export default function ItensListados({ props, funcao }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.postagem}>{props.exercicios}</Text>
-      <TouchableOpacity onPress={() => funcao(props.id)}>
+      <Text style={styles.postagem}>{props.nomeExercicio}</Text>
+      <TouchableOpacity onPress={() => funcao(props.IDExercicio)}>
         <MaterialIcons name="delete" size={28} color={'gray'} />
       </TouchableOpacity>
     </View>

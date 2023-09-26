@@ -10,9 +10,10 @@ export default function Routes(app: FastifyInstance) {
 
 app.delete("/exercicio/:id", async (request, reply) => {
   const { id } = request.params as { id: number };
+  console.log(id)
   try {
     const result = await DeletarExercicio(id); 
-    reply.send(result);
+    return result
   } catch (err) {
     console.error(err);
     reply.status(500).send({ error: 'An error occurred while deleting data.' });
@@ -22,7 +23,8 @@ app.delete("/exercicio/:id", async (request, reply) => {
 app.get("/exercicio", async (request, reply) => {    
   try {
     const exercicios = await BuscarExercicios(); 
-    reply.send(exercicios);
+    console.log(exercicios)
+    return exercicios;
   } catch (err) {
     console.error(err);
     reply.status(500).send({ error: 'An error occurred while fetching data.' });
@@ -34,10 +36,10 @@ app.post("/exercicio", async (request, reply) => {
   const detalhesExercicio: string =  '';
   try {
     const newExercicio = await NovoExercicio(nomeExercicio, detalhesExercicio)
-    reply.send(newExercicio);
+    return reply.send(newExercicio);
   } catch (err) {
     console.error(err);
-    reply.status(500).send({ error: 'An error occurred while inserting data.' });
+    return reply.status(500).send({ error: 'An error occurred while inserting data.' });
   }
 });
 

@@ -17,12 +17,13 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { api } from "../lib/api";
 
 export function Training({ navigation }) {
-  const [lista, setLista] = useState("");
+  const [lista, setLista] = useState([]);
 
   async function deletarExercicio(key) {
+    console.log(key)
     await api.delete(`/exercicio/${key}`);
 
-    const novaLista = lista.filter((item) => item.id != key)
+    const novaLista = lista.filter((item) => item.IDExercicio != key)
     setLista(novaLista)
   };
 
@@ -33,15 +34,15 @@ export function Training({ navigation }) {
 
   const submeterInformacao = async (texto) => {
     console.log(texto);
-    api.post("/exercicio", nomeExercicio );
+   await api.post("/exercicio", {nomeExercicio: texto} );
     pegarDados()
   };
 
   async function pegarDados() {
     try {
-      console.log('1');
+      console.log('olá');
       const response = await api.get("exercicio")
-      console.log(response.data);
+      console.log("aaa",response.data);
       setLista(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -75,7 +76,7 @@ export function Training({ navigation }) {
               renderItem={({ item }) => (
                 <View style={styles.lista}>
                   <TouchableOpacity onPress={() => navigation.navigate("details", {
-                    id: item.id
+                    id: item.IDExercicio
                   })} style={styles.details}>
                     <MaterialIcons name="content-paste" size={28} color={'gray'} />
                   </TouchableOpacity>

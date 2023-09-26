@@ -12,7 +12,10 @@ app.register(cors, {
 
 Routes(app)
 
-app.listen(3001).then((address) => {
+app.listen({
+  port:3001,
+  host:"0.0.0.0"
+}).then((address) => {
     console.log(`Server running at: ${address}`);
 }).catch((error) => {
     console.error(error);

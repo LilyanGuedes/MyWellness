@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 export default async function DetalheExercicio(id: number, detalhesExercicio: string) {
   return await prisma.exercicios.update({
-    where: { IDExercicio: id },
+    where: { IDExercicio: Number(id) },
     data: {
       detalhesExercicio
     }

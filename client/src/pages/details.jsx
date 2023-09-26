@@ -19,9 +19,12 @@ import { api } from "../lib/api";
 export function Details({ navigation }) {
   const { id } = useRoute().params;
   const [descricao, setDescricao] = useState("");
+  const [detalhe, setDetalhe] = useState("");
+
 
   async function submeterDetalhes() {
-    await api.patch(`/descricao/${id}`, { details: descricao });
+    await api.patch(`/descricao/${id}`, { detalhesExercicio: descricao });
+    setDetalhe(descricao)
   }
 
   async function deletarDetalhes() {}
@@ -40,7 +43,7 @@ export function Details({ navigation }) {
       <View style={styles.scroll}>
         <View style={styles.conteudo}>
           <AdicionarDetalhes funcao={submeterDetalhes} texto={descricao} setTexto={setDescricao} />
-          <Detalhes detalhes={descricao} id={id} funcao={deletarDetalhes} />
+          <Detalhes detalhes={detalhe} id={id} funcao={deletarDetalhes} />
         </View>
 
         <StatusBar style="auto" />
