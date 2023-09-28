@@ -40,9 +40,7 @@ export function Training({ navigation }) {
 
   async function pegarDados() {
     try {
-      console.log('olá');
       const response = await api.get("exercicio")
-      console.log("aaa",response.data);
       setLista(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);

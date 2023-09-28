@@ -1,5 +1,10 @@
 import { FastifyInstance } from 'fastify';
 
+interface ExercicioInterface{
+  nomeExercicio: string
+  detalhesExercicio?: string
+}
+
 // Controllers
 import DeletarExercicio from "./controllers/deletarExercicio";
 import BuscarExercicios from "./controllers/BuscarExercicios";
@@ -23,7 +28,6 @@ app.delete("/exercicio/:id", async (request, reply) => {
 app.get("/exercicio", async (request, reply) => {    
   try {
     const exercicios = await BuscarExercicios(); 
-    console.log(exercicios)
     return exercicios;
   } catch (err) {
     console.error(err);
@@ -32,8 +36,10 @@ app.get("/exercicio", async (request, reply) => {
 });
 
 app.post("/exercicio", async (request, reply) => {
-  const { nomeExercicio } = request.body as { nomeExercicio: string };
-  const detalhesExercicio: string =  '';
+  let { nomeExercicio, detalhesExercicio }:ExercicioInterface = request.body as ExercicioInterface
+  if(typeof detalhesExercicio === 'undefined' || detalhesExercicio?.length < 1){
+    detalhesExercicio = ""
+  }
   try {
     const newExercicio = await NovoExercicio(nomeExercicio, detalhesExercicio)
     return reply.send(newExercicio);
